@@ -9,20 +9,22 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+// id, name, description, image, route, createAt, updateAt
 @Entity
 @Table(name = "roles")
 public class Roles {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @Column(name = "name")
     private String name;
 
     private String image;
 
     private String description;
+
+    private String route;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -30,15 +32,16 @@ public class Roles {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-/*    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
     @JsonBackReference
-    private Set<Users> users = new HashSet<>();*/
+    private Set<Users> users = new HashSet<>();
 
-    public long getId() {
+    // Getters & Setters
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -66,6 +69,14 @@ public class Roles {
         this.description = description;
     }
 
+    public String getRoute() {
+        return route;
+    }
+
+    public void setRoute(String route) {
+        this.route = route;
+    }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -82,12 +93,13 @@ public class Roles {
         this.updatedAt = updatedAt;
     }
 
-/*    public Set<Users> getUsers() {
+    public Set<Users> getUsers() {
         return users;
     }
 
     public void setUsers(Set<Users> users) {
         this.users = users;
-    }*/
+    }
 }
+
 

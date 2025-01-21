@@ -1,5 +1,6 @@
 package com.app.foodapp.models;
 
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -10,10 +11,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 /*
-*
-* TimeStamp: YYYY-mm-dd H:m:S
-*
-* */
+ *
+ * TimeStamp: YYYY-mm-dd H:m:s
+ *
+ * */
 
 @Entity
 @Table(name = "users")
@@ -21,9 +22,9 @@ public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(name = "first_name")
@@ -45,20 +46,21 @@ public class Users {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-/*    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
+            joinColumns = @JoinColumn(name="user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    @JsonManagedReference
-    private Set<Roles> roles = new HashSet<>();*/
+/*//@JsonManagedReference ///*/
+    private Set<Roles> roles = new HashSet<>();
 
-    public long getId() {
+    // Getters & Setters
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -124,5 +126,13 @@ public class Users {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Set<Roles> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Roles> roles) {
+        this.roles = roles;
     }
 }

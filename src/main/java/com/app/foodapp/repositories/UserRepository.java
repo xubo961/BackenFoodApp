@@ -7,8 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 /*
- * Jpa nos facilita algunas funciones CRUD por defecto
- * CREATE, READ, UPDATE, DELTE
+ *
+ * JPA nos facilita algunas funciones CRUD por defecto
+ * CREATE, READ, UPDATE, DELETE
  *
  * */
 
