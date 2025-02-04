@@ -1,5 +1,8 @@
 package com.app.foodapp.controllers;
 
+import com.app.foodapp.dto.ApiDelivery;
+import com.app.foodapp.dto.LoginRequest;
+import com.app.foodapp.dto.LoginResponse;
 import com.app.foodapp.models.Users;
 import com.app.foodapp.repositories.UserRepository;
 import com.app.foodapp.services.UsersService;
@@ -8,14 +11,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * localhost:8080/api
- *
+ * <p>
  * context-path de application.properties la url queda: localhost:8080/api
- *
- *En este controlador la URL es: localhost:8080/api/users
+ * <p>
+ * En este controlador la URL es: localhost:8080/api/users
  */
 
 /*
@@ -46,5 +51,13 @@ public class UsersController {
         Users createUser = this.usersService.createUser(user);
         return ResponseEntity.ok(createUser);
     }
+
+    //El post encripta las credenciales. Y el get no
+    @PostMapping("/login")
+    public ResponseEntity<Object> login(@RequestBody LoginRequest credentials) {
+        ApiDelivery<LoginResponse> response = this.usersService.login(credentials.getEmail(), credentials.getPassword());
+        return ResponseEntity.status(response.getStatus()).body(response);
+    }
+
 
 }
