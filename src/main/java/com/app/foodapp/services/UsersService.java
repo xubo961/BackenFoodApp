@@ -146,5 +146,4 @@ public class UsersService {
         return this.jwtUtil.generateToken(email);
     }
 
-
 }
